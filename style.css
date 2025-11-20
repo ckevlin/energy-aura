@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  background: #0b051a;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: white;
+}
+
+#aura {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#ui {
+  position: fixed;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+#lumaText {
+  margin-bottom: 20px;
+  padding: 0 20px;
+  font-size: 20px;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+#speakButton {
+  padding: 16px 40px;
+  background: #8f5fff;
+  border: none;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(150, 90, 255, 0.5);
+}
+
+#speakButton:active {
+  background: #b390ff;
+}
