@@ -132,14 +132,12 @@ function getLumaVoice() {
   );
 }
 
-// Speak with Luma's voice
 function speak(text) {
   const utter = new SpeechSynthesisUtterance(text);
   utter.voice = getLumaVoice();
   utter.pitch = 1.1;
   utter.rate = 0.92;
   utter.volume = 1;
-
   speechSynthesis.speak(utter);
 }
 
@@ -158,7 +156,7 @@ function inferMoodFromText(text) {
 }
 
 //---------------------------------------------------------
-// LUMA'S DYNAMIC RESPONSES
+// LUMA REPLIES
 //---------------------------------------------------------
 const lumaReplies = {
   happy: [
@@ -194,7 +192,7 @@ function generateReply(mood) {
 }
 
 //---------------------------------------------------------
-// SPEECH RECOGNITION SETUP
+// SPEECH RECOGNITION
 //---------------------------------------------------------
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -206,9 +204,7 @@ recognition.lang = "en-US";
 
 let isListening = false;
 
-//---------------------------------------------------------
-// AUDIO UNLOCK FIX (CRITICAL FOR CHROME)
-//---------------------------------------------------------
+// Chrome audio unlock fix
 function unlockAudio() {
   const audio = new Audio();
   audio.src =
@@ -231,18 +227,18 @@ recognition.onresult = (event) => {
 };
 
 recognition.onerror = (e) => {
-  console.log("SpeechRecognition error:", e.error);
+  console.error("SpeechRecognition error:", e.error);
   isListening = false;
 };
 
 //---------------------------------------------------------
-// BUTTON HANDLERS
+// SPEAK BUTTON
 //---------------------------------------------------------
 const speakButton = document.getElementById("speakButton");
 
 speakButton.addEventListener("mousedown", () => {
   if (!isListening) {
-    unlockAudio();  // 🔥 CRITICAL FIX
+    unlockAudio();
     isListening = true;
     speechSynthesis.cancel();
     recognition.start();
@@ -255,7 +251,7 @@ speakButton.addEventListener("mouseup", () => {
 });
 
 //---------------------------------------------------------
-// RENDER LOOP
+// LOOP
 //---------------------------------------------------------
 function animate() {
   drawAura(currentMood);
@@ -263,7 +259,7 @@ function animate() {
 }
 animate();
 
-// Load voices
+// preload voices
 setTimeout(() => speechSynthesis.getVoices(), 250);
 
 
